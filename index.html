@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函館の写真撮影なら | 有限会社フォトスタジオ嵯峨</title>
+    <meta name="description" content="函館市のフォトスタジオ嵯峨。建築撮影、卒業アルバム、集合写真（即日納品対応）、イベント撮影、動画撮影、ドローン空撮、写真プリント、名刺制作。道南・北海道全域対応。全国包括飛行許可取得済み。">
+    <meta name="keywords" content="函館,写真館,フォトスタジオ,道南,北海道,卒業アルバム,集合写真,即日納品,空撮,ドローン,建築撮影,イベント撮影,動画撮影,写真プリント,名刺,Hasselblad,ノーリツQSS-39,函館市,富岡町">
+    <meta name="author" content="有限会社フォトスタジオ嵯峨">
+    <meta property="og:title" content="函館の写真撮影なら | 有限会社フォトスタジオ嵯峨">
+    <meta property="og:description" content="函館市のプロフェッショナル写真スタジオ。建築撮影、卒業アルバム、集合写真即日納品、ドローン空撮など幅広く対応。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0d0d0d;
+            --primary-light: #f8f8f8;
+            --accent-gold: #d4af37;
+            --text-gray: #666;
+            --overlay-dark: rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-dark);
+            overflow-x: hidden;
+        }
+
+        /* ヘッダー */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 4rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-social-icon {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            padding: 0 !important;
+        }
+
+        .header-social-icon::after {
+            display: none !important;
+        }
+
+        .header-social-icon svg {
+            transition: transform 0.3s ease;
+        }
+
+        .header-social-icon:hover svg {
+            transform: scale(1.2);
+        }
+
+        /* スライドショーセクション */
+        .hero-slideshow {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: 5px;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.3s;
+        }
+
+        .hero-location {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: white;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.2s;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: white;
+            letter-spacing: 4px;
+            font-weight: 300;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.6s;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.9s;
+        }
+
+        .scroll-arrow {
+            width: 2px;
+            height: 40px;
+            background: white;
+            margin-top: 10px;
+            position: relative;
+            animation: scrollDown 2s ease-in-out infinite;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scrollDown {
+            0%, 100% {
+                transform: translateY(0);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(15px);
+                opacity: 1;
+            }
+        }
+
+        /* サービスセクション */
+        .services-section {
+            padding: 8rem 4rem;
+            background: var(--primary-light);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 5rem;
+            letter-spacing: 1px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 2px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-gold);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .service-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .service-price {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* ポートフォリオプレビュー */
+        .portfolio-preview {
+            padding: 0;
+            background: var(--primary-dark);
+            color: white;
+            position: relative;
+        }
+
+        .portfolio-preview .section-title {
+            color: white;
+            position: absolute;
+            top: 4rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+            margin: 0;
+        }
+
+        .portfolio-preview .section-subtitle {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1;
+            background: rgba(0, 255, 0, 0); /* デバッグ用の色を透明に */
+            min-height: auto;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        /* フッター */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 4rem 4rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            line-height: 1.8;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 1rem 3rem;
+            background: var(--accent-gold);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .contact-btn:hover {
+            background: transparent;
+            color: var(--accent-gold);
+        }
+
+        /* 固定電話番号ポップアップ */
+        .floating-phone {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            background: rgba(13, 13, 13, 0.8);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .floating-phone:hover {
+            background: rgba(13, 13, 13, 0.95);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent-gold);
+        }
+
+        .floating-phone-icon {
+            font-size: 1.3rem;
+        }
+
+        /* Googleマップ */
+        .map-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 3rem;
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ソーシャルアイコン */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-dark);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-dark);
+        }
+
+        .social-icon svg {
+            flex-shrink: 0;
+        }
+
+        .social-icon:hover {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Accessセクション内のソーシャルアイコン（背景が明るい） */
+        .company-info .social-icon {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .company-info .social-icon:hover {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+
+        /* フッター内のソーシャルアイコン（背景が暗い） */
+        footer .social-icon {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        footer .social-icon:hover {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+
+        /* 会社情報セクション */
+        .company-info {
+            background: var(--primary-light);
+            padding: 8rem 4rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .info-item {
+            margin-bottom: 2rem;
+        }
+
+        .info-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .info-value a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-value a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 2rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .floating-phone {
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.8rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .floating-phone-icon {
+                font-size: 1.3rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+            }
+
+            .hero-location {
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .services-section,
+            .portfolio-preview,
+            .company-info {
+                padding: 5rem 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0;
+                padding: 0;
+            }
+
+            .portfolio-item {
+                height: auto;
+            }
+            
+            .portfolio-preview .section-title {
+                font-size: 2rem;
+                top: 2rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+        }
+
+        /* ハンバーガーメニュー（モバイル） */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--primary-dark);
+                padding: 5rem 2rem;
+                transition: right 0.4s ease;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            nav a {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header id="header">
+        <div class="logo">PHOTO STUDIO SAGA</div>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#access">Access</a></li>
+                <li>
+                    <a href="https://x.com/saganomise" target="_blank" rel="noopener noreferrer" class="header-social-icon" title="Twitter">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ヒーロースライドショー -->
+    <section class="hero-slideshow" id="home">
+        <div class="slide active">
+            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920&q=80" alt="建築撮影">
+            <div class="slide-overlay">
+                <p class="hero-location">Hokkaido, Hakodate</p>
+                <h1 class="hero-title">PHOTO STUDIO SAGA</h1>
+                <p class="hero-subtitle">Professional Photography</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&q=80" alt="卒業アルバム">
+            <div class="slide-overlay">
+                <p class="hero-location">Hokkaido, Hakodate</p>
+                <h1 class="hero-title">PHOTO STUDIO SAGA</h1>
+                <p class="hero-subtitle">Professional Photography</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=1920&q=80" alt="集合写真">
+            <div class="slide-overlay">
+                <p class="hero-location">Hokkaido, Hakodate</p>
+                <h1 class="hero-title">PHOTO STUDIO SAGA</h1>
+                <p class="hero-subtitle">Professional Photography</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80" alt="イベント撮影">
+            <div class="slide-overlay">
+                <p class="hero-location">Hokkaido, Hakodate</p>
+                <h1 class="hero-title">PHOTO STUDIO SAGA</h1>
+                <p class="hero-subtitle">Professional Photography</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=1920&q=80" alt="動画撮影">
+            <div class="slide-overlay">
+                <p class="hero-location">Hokkaido, Hakodate</p>
+                <h1 class="hero-title">PHOTO STUDIO SAGA</h1>
+                <p class="hero-subtitle">Professional Photography</p>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- サービスセクション -->
+    <section class="services-section" id="services">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">プロフェッショナルな撮影サービスをご提供します</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏛️</div>
+                <h3 class="service-title">建築撮影</h3>
+                <p class="service-description">建築物の美しさと機能性を最大限に引き出す撮影を行います。光と影のコントラストを活かした印象的な作品をお届けします。</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🎓</div>
+                <h3 class="service-title">卒業アルバム・行事販売</h3>
+                <p class="service-description">大切な学生時代の思い出を美しく残します。行事販売はネット販売に対応、学校内での集金業務を0に。</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">👥</div>
+                <h3 class="service-title">集合写真</h3>
+                <p class="service-description">函館近郊なら即日納品に対応、会議・宴会前に撮影してお帰りまでにお届け、後日送付する手間が無く人気となっております。</p>
+                <p class="service-price">台紙付2L版 1枚1,200円<br><span style="font-size: 0.85rem;">（人数割引あります、お電話下さい）</span></p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🎉</div>
+                <h3 class="service-title">イベント撮影</h3>
+                <p class="service-description">結婚式、パーティー、企業イベントなど、特別な瞬間を逃さず記録。臨場感あふれる写真をお届けします。</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🎬</div>
+                <h3 class="service-title">動画撮影</h3>
+                <p class="service-description">プロモーション動画、イベント記録、企業VPなど、高品質な映像制作を行います。ストーリー性のある作品をお作りします。</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🚁</div>
+                <h3 class="service-title">空撮</h3>
+                <p class="service-description">全国包括飛行許可取得済み、Hasselbladカメラ搭載ドローンで建築物、自然風景など、圧巻の映像をご提供します。</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🖼️</div>
+                <h3 class="service-title">写真プリント</h3>
+                <p class="service-description">最新のノーリツ製QSS-39シリーズを導入、湿気・紫外線耐性に優れた高性能銀塩プリンターで写真を未来へ届けます</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3 class="service-title">名刺</h3>
+                <p class="service-description">マット素材の写真を使用した名刺を作成しています、写真なので自由なデザイン・優れた発色で名刺交換から印象付けが出来ます。50枚からの小ロットで受け付けておりますので、まずはご相談を。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ポートフォリオプレビュー -->
+    <section class="portfolio-preview" id="portfolio">
+        <h2 class="section-title">Portfolio</h2>
+        
+        <div class="portfolio-grid" id="portfolioGrid">
+            <!-- JavaScriptでランダムに生成 -->
+        </div>
+    </section>
+
+    <!-- 会社情報・アクセス -->
+    <section class="company-info" id="access">
+        <h2 class="section-title">Access</h2>
+        <p class="section-subtitle">会社概要とアクセス情報</p>
+        
+        <div class="info-grid">
+            <div>
+                <div class="info-item">
+                    <div class="info-label">会社名</div>
+                    <div class="info-value">有限会社フォトスタジオ嵯峨</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">電話番号</div>
+                    <div class="info-value">
+                        <a href="tel:0138-45-1276">TEL: 0138-45-1276</a>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">FAX</div>
+                    <div class="info-value">FAX: 0138-45-8350</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">所在地</div>
+                    <div class="info-value">
+                        〒041-0811<br>
+                        北海道函館市富岡町3-27-15
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">SNS</div>
+                    <div class="social-links">
+                        <a href="https://x.com/saganomise" target="_blank" rel="noopener noreferrer" class="social-icon" title="Twitter">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d220.47261568023592!2d140.75081329007452!3d41.810224526333776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9ef42490a6998b%3A0xdb8c9d18b78d31cd!2z44iy44OV44Kp44OI44K544K_44K444Kq772l5bWv5bOo!5e1!3m2!1sja!2sjp!4v1769355229568!5m2!1sja!2sjp"
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PHOTO STUDIO SAGA</h3>
+                <p>函館・道南エリアを中心に、<br>地域に根ざしたプロフェッショナルな撮影サービスを提供しています。</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#services">建築撮影</a>
+                <a href="#services">卒業アルバム・行事販売</a>
+                <a href="#services">集合写真</a>
+                <a href="#services">イベント撮影</a>
+                <a href="#services">動画撮影</a>
+                <a href="#services">空撮</a>
+                <a href="#services">写真プリント</a>
+                <a href="#services">名刺</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><a href="tel:0138-45-1276">TEL: 0138-45-1276</a></p>
+                <p>FAX: 0138-45-8350</p>
+                <p>北海道函館市富岡町3-27-15</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 有限会社フォトスタジオ嵯峨. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 固定電話番号ポップアップ -->
+    <a href="tel:0138-45-1276" class="floating-phone">
+        <span class="floating-phone-icon">📞</span>
+        <span>0138-45-1276</span>
+    </a>
+
+    <script>
+        // ポートフォリオ画像のプール（好きなだけ追加可能）
+        const portfolioImages = [
+            { url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=600&fit=crop', alt: '建築撮影' },
+            { url: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&h=600&fit=crop', alt: '建築撮影' },
+            { url: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=600&h=600&fit=crop', alt: '建築撮影' },
+            { url: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&h=600&fit=crop', alt: '建築撮影' },
+            { url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=600&h=600&fit=crop', alt: '建築撮影' },
+            { url: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=600&h=600&fit=crop', alt: '建築撮影' },
+            { url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&h=600&fit=crop', alt: '建築撮影' },
+            { url: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&h=600&fit=crop', alt: '建築撮影' },
+            { url: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&h=600&fit=crop', alt: '学校' },
+            { url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=600&fit=crop', alt: '学校行事' },
+            { url: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=600&fit=crop', alt: '学校行事' },
+            { url: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=600&fit=crop', alt: '卒業式' },
+            { url: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&h=600&fit=crop', alt: '学校' },
+            { url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=600&fit=crop', alt: '学生' },
+            { url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=600&fit=crop', alt: '学校イベント' },
+            { url: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&h=600&fit=crop', alt: '集合写真' },
+            { url: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=600&fit=crop', alt: '集合写真' },
+            { url: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=600&fit=crop', alt: 'チーム写真' },
+            { url: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&h=600&fit=crop', alt: 'グループ' },
+            { url: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=600&fit=crop', alt: 'ビジネス' },
+            { url: 'https://images.unsplash.com/photo-1519167758481-83f29da8d3d8?w=600&h=600&fit=crop', alt: 'イベント' },
+            { url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=600&fit=crop', alt: 'イベント撮影' },
+            { url: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&h=600&fit=crop', alt: 'イベント撮影' },
+            { url: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&h=600&fit=crop', alt: 'パーティー' },
+            { url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=600&fit=crop', alt: 'イベント' },
+            { url: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&h=600&fit=crop', alt: 'コンサート' },
+            { url: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=600&fit=crop', alt: '音楽イベント' },
+            { url: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=600&fit=crop', alt: 'セミナー' },
+            { url: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=600&fit=crop', alt: '結婚式' },
+            { url: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&h=600&fit=crop', alt: 'ウェディング' },
+            { url: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&h=600&fit=crop', alt: '結婚式撮影' },
+            { url: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&h=600&fit=crop', alt: 'ウェディング' },
+            { url: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600&h=600&fit=crop', alt: '動画撮影' },
+            { url: 'https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=600&h=600&fit=crop', alt: '動画撮影' },
+            { url: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=600&fit=crop', alt: 'ビデオ撮影' },
+            { url: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=600&fit=crop', alt: '映像制作' },
+            { url: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=600&h=600&fit=crop', alt: '空撮' },
+            { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=600&fit=crop', alt: '空撮' },
+            { url: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=600&fit=crop', alt: 'ドローン撮影' },
+            { url: 'https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=600&h=600&fit=crop', alt: '航空写真' },
+            { url: 'https://images.unsplash.com/photo-1441829266145-6d4bfbd38eb4?w=600&h=600&fit=crop', alt: '空からの景色' },
+            { url: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=600&fit=crop', alt: '企業' },
+            { url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=600&fit=crop', alt: '企業撮影' },
+            { url: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&h=600&fit=crop', alt: 'オフィス' },
+            { url: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=600&fit=crop', alt: 'ビジネス' },
+            { url: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=600&fit=crop', alt: '会議' },
+            { url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop', alt: 'ポートレート' },
+            { url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&h=600&fit=crop', alt: 'プロフィール撮影' },
+            { url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=600&fit=crop', alt: '人物撮影' },
+            { url: 'https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=600&h=600&fit=crop', alt: '函館夜景' },
+            { url: 'https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=600&h=600&fit=crop', alt: '北海道' },
+            { url: 'https://images.unsplash.com/photo-1528164344705-47542687000d?w=600&h=600&fit=crop', alt: '日本の風景' },
+            { url: 'https://images.unsplash.com/photo-1480796927426-f609979314bd?w=600&h=600&fit=crop', alt: '都市景観' },
+            { url: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=600&fit=crop', alt: '商品撮影' },
+            { url: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop', alt: 'プロダクト' },
+            { url: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&h=600&fit=crop', alt: '物撮り' }
+        ];
+
+        // 配列をシャッフルする関数
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // ポートフォリオグリッドを生成
+        function generatePortfolio() {
+            const grid = document.getElementById('portfolioGrid');
+            if (!grid) return;
+            
+            const shuffledImages = shuffleArray(portfolioImages);
+            const displayCount = 12;
+            
+            grid.innerHTML = '';
+            
+            for (let i = 0; i < displayCount && i < shuffledImages.length; i++) {
+                const item = document.createElement('div');
+                item.className = 'portfolio-item';
+                item.innerHTML = `
+                    <img src="${shuffledImages[i].url}" alt="${shuffledImages[i].alt}" loading="lazy">
+                    <div class="portfolio-overlay"></div>
+                `;
+                grid.appendChild(item);
+            }
+        }
+
+        // ページ読み込み時にポートフォリオを生成
+        window.onload = function() {
+            console.log('Window loaded!');
+            generatePortfolio();
+        };
+
+        // スライドショー機能
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // 4秒ごとに自動切り替え
+        setInterval(nextSlide, 4000);
+
+        // スクロール時のヘッダー変更
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // モバイルメニュー
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('nav');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // メニューリンククリック時にメニューを閉じる
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
